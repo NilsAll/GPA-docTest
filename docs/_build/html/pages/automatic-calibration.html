@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Automatic calibration using the Arduino code &#8212; GPA-FHDO 1.3 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Choosing the Optimal Power Supply" href="optimal-power-supply.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="automatic-calibration-using-the-arduino-code">
+<h1>Automatic calibration using the Arduino code<a class="headerlink" href="#automatic-calibration-using-the-arduino-code" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Connect the GPA to power supply, Arduino and gradient coil (or dummy load)</p></li>
+<li><p>Programm the Arduino with the supplied testcode using the Arduino software environmet (<a class="reference external" href="https://www.arduino.cc/">https://www.arduino.cc/</a>)</p></li>
+<li><p>Open a terminal programm (i.e. putty) and connect to the COM-Port of the Arduino with 115200 baud</p></li>
+<li><p>press ‘q’ to get an info</p></li>
+<li><p>press ‘f’ to find the DAC values for zero amp current</p></li>
+<li><p>press ‘g’ to perform the calibration</p></li>
+</ol>
+<section id="details-about-the-calibration-procedure">
+<h2>Details about the calibration procedure<a class="headerlink" href="#details-about-the-calibration-procedure" title="Permalink to this headline">¶</a></h2>
+<p>Calibration is based on measuring the ratio of DAC value to output current for different points. The measurement points are
+evenly distributed over the whole DAC input range (0x0000 - 0xFFFF). The default setting in the testcode uses 33 measurement
+points (0x0000, 0x0500, 0x1000, …). The measured ratios are stored in the eeprom of the Arduino. However it is recommended
+to repeat the calibration after every power on, since it is dependent on temperature and gradient coil.
+If the GPA is set to a specific output voltage, first order lagrangian polynomials are used for interpolation
+(linear interpolation). Second order interpolation would probably further improve linearity - however since linearity is
+already very good, this has not been implemented yet.</p>
+<p>The 33-point calibration for one channel takes currently 3.3 ms, because there is a 100 us delay for current settling before
+reading the current from the ADC. A 4-channel calibration therefore takes around 13 ms. Since the calibration is super fast,
+it can be easily repeated withing imaging sequences to compensate temperature dependant nonlinearities and offsets.</p>
+<p>Theoretically the DAC value 0x8000 should correspond to 0 A output current. However, due to tolerances of the used compents,
+this is not 100 % true. There is a routine in the testcode (command ‘f’) that finds the DAC value that corresponds to 0 A output
+current. This value will be used in the calibration instead of the 0x8000 base point. The rational behind this is, that the gpa
+should output as little as possible current if its set to 0 A.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">GPA-FHDO</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general-overview.html">General Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function-overview.html">Function Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connections.html">Connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dac-adc-control.html">Controlling the DAC and ADC via SPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapting-resistor-capacitor.html">Adapting the resistor and capacitor values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimal-power-supply.html">Choosing the Optimal Power Supply</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Automatic calibration using the Arduino code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#details-about-the-calibration-procedure">Details about the calibration procedure</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="optimal-power-supply.html" title="previous chapter">Choosing the Optimal Power Supply</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Benjamin Menkuec, Nils Allek.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/pages/automatic-calibration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
