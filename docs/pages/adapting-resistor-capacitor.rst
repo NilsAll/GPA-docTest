@@ -28,5 +28,6 @@ approaches VDD and GND, it is recommended to only use a voltage range from 0.1 V
 Because of component tolerances, these values are never exact. The next paragraph shows how to use calibration 
 to compensate these inaccuracies. 
 
-**For the following tests, 10 kOhms was used for R41 and R44, which results in a maximum current of 6.25 A.**
+.. note::
+    For the following tests, 10 kOhms was used for R41 and R44, which results in a maximum current of 6.25 A.
 
