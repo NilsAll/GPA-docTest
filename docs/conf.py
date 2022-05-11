@@ -54,7 +54,5 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
-# copied solution to change max content width: https://stackoverflow.com/a/43186995
 def setup(app):
     app.add_css_file('my_theme.css')
