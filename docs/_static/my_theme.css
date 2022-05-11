@@ -2,3 +2,14 @@
 .wy-nav-content {
     max-width: 1200px !important;
 }
+
+/* copied solution to override table width restrictions: https://github.com/readthedocs/sphinx_rtd_theme/issues/117#issuecomment-41506687 */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    /* !important prevents the common CSS stylesheets from
+       overriding this as on RTD they are loaded after this stylesheet */
+    white-space: normal !important;
+}
+
+.wy-table-responsive {
+    overflow: visible !important;
+}
