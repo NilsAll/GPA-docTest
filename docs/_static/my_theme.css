@@ -1,10 +1,13 @@
-/* copied solution to change max content width: https://stackoverflow.com/a/43186995 */
-.wy-nav-content {
-    max-width: 1200px !important;
-}
-
 /* copied solution to override table width restrictions: https://github.com/readthedocs/sphinx_rtd_theme/issues/117#issuecomment-41506687 */
 /* https://stackoverflow.com/a/69373882 */
 .wy-table-responsive table td, .wy-table-responsive table th {
     white-space: inherit !important;
 }
+
+
+/* copied solution to change max content width: https://stackoverflow.com/a/43186995 */
+.wy-nav-content {
+    max-width: 1200px !important;
+}
+
+
