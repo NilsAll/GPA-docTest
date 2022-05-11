@@ -22,7 +22,6 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
-   
    pages/general-overview
    pages/function-overview
    pages/connections
@@ -35,7 +34,6 @@ Contents:
    pages/bom
    pages/assembly-instructions
 
-|
 |
 
 Contributing
