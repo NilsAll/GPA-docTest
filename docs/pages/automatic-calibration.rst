@@ -18,11 +18,11 @@ If the GPA is set to a specific output voltage, first order lagrangian polynomia
 (linear interpolation). Second order interpolation would probably further improve linearity - however since linearity is 
 already very good, this has not been implemented yet. 
 
-The 33-point calibration for one channel takes currently 3.3 ms, because there is a 100 us delay for current settling before 
+The 33-point calibration for one channel takes currently 3.3ms, because there is a 100 us delay for current settling before 
 reading the current from the ADC. A 4-channel calibration therefore takes around 13 ms. Since the calibration is super fast, 
 it can be easily repeated withing imaging sequences to compensate temperature dependant nonlinearities and offsets. 
 
-Theoretically the DAC value 0x8000 should correspond to 0 A output current. However, due to tolerances of the used compents, 
-this is not 100 % true. There is a routine in the testcode (command 'f') that finds the DAC value that corresponds to 0 A output 
+Theoretically the DAC value 0x8000 should correspond to 0A output current. However, due to tolerances of the used compents, 
+this is not 100% true. There is a routine in the testcode (command 'f') that finds the DAC value that corresponds to 0A output 
 current. This value will be used in the calibration instead of the 0x8000 base point. The rational behind this is, that the gpa 
-should output as little as possible current if its set to 0 A.
+should output as little as possible current if its set to 0A.

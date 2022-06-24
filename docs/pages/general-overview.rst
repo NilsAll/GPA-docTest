@@ -1,7 +1,7 @@
 General Overview
 ================
 
-This Gradient Power Amplifier (GPA) has 4 channels, of which each can drive a current of +- 10 A. 
+This Gradient Power Amplifier (GPA) has 4 channels, of which each can drive a current of :math:`\pm 10A`.
 The current is controlled via an SPI interface. The GPA has a build in current sensor for each channel 
 that is also controlled via SPI. The information from the current sensor can be used for automatic calibration 
 of the GPA. The GPA can easily be connected to a red pitaya that runs the 
